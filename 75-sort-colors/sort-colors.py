@@ -3,28 +3,19 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        zero = one = two = 0
+        low = mid = 0
+        high = len(nums) -1 
 
-        for i in range(len(nums)):
-            if nums[i] == 0:
-                zero+=1
+        while (mid<=high):
+            if nums[mid] == 0:
+                nums[low],nums[mid] = nums[mid],nums[low]
+                low+=1
+                mid+=1
             
-            elif nums[i] == 1:
-                one+=1
-            
-            elif nums[i] == 2:
-                two+=1
-        
-        for i in range(len(nums)):
-            if i in range(zero):
-                nums[i] = 0
-                continue
-            
-            if i in range(zero+one):
-                nums[i] = 1
-                continue
-            
+            elif nums[mid] == 1:
+                mid+=1
+
             else:
-                nums[i] = 2
-
+                nums[high],nums[mid] = nums[mid],nums[high]
+                high-=1
         
