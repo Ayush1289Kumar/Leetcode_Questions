@@ -1,21 +1,27 @@
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
-        curr_sum = 0
+        zero = one = 0
         freq = {0:-1}
         ans = 0
+
         for i in range(len(nums)):
             if nums[i] == 0:
-                curr_sum+=(-1)
+                zero+=1 
+            else:
+                one+=1
+
+            diff = zero - one
+
+            if diff == 0:
+                ans = max(ans,i+1)
+                continue
+            
+            if diff in freq:
+                idx = freq[diff]
+                length = i - idx
+                ans = max(ans,length)
             
             else:
-                curr_sum += 1
-       
-            
-            if curr_sum in freq:
-                ans = max(ans, i-freq[curr_sum])
-            
-            else:
-                freq[curr_sum] = i
-        return ans
-
-
+                freq[diff] = i
+        
+        return ans 
