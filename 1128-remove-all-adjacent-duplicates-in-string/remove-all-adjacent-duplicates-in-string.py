@@ -3,10 +3,13 @@ class Solution:
         stack = []
 
         for i in range(len(s)):
-            if len(stack)==0 or stack[-1]!= s[i]:
+            if len(stack)==0:
                 stack.append(s[i])
-            
-            else:
+                continue
+            if stack[-1] == s[i]:
                 stack.pop()
+                continue
+            
+            stack.append(s[i])
         
         return "".join(stack)
