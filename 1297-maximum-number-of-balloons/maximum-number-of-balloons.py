@@ -6,14 +6,12 @@ class Solution:
         for c in text:
             map[c] = map.get(c,0)+1
         
-        times = float("inf")
+        ans = float("inf")
 
         for c in balloon:
             if c not in map:
-                return 0
-            
-            attempt = map[c]//balloon[c]
-
-            times = min(times,attempt)
+                return 0    
+            times = map[c]//balloon[c]
+            ans = min(times,ans)
         
-        return times
+        return ans
