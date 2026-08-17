@@ -6,7 +6,7 @@ class Solution:
         
         ans = 0
         hasOdd = False
-        
+
         for value in freq.values():
             if value%2 == 0:
                 ans+=value
@@ -15,6 +15,6 @@ class Solution:
                 hasOdd = True
         
         if hasOdd:
-            ans+=1
+            return ans+1
 
         return ans
