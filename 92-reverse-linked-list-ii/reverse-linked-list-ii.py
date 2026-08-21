@@ -4,40 +4,33 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+    def reverseBetween(
+        self, head: Optional[ListNode], left: int, right: int
+    ) -> Optional[ListNode]:
+        if left == right:
+            return head
 
-        if left == right: return head
+        begin = None
+        dummy = head
 
-        curr_node = head
-       
-        if left==1:
-            before = None
-        else:
-            for _ in range(left-2):
-                curr_node = curr_node.next
-            
-            before = curr_node 
-            curr_node = curr_node.next 
-                            
+        for _ in range(left-1):
+            begin = dummy
+            dummy = dummy.next
 
         prev = None
-        curr = curr_node
-
-        times = right-left+1
-
-        for _ in range(times):
+        curr = dummy
+        length = right - left + 1
+        while length!=0:
             nxt = curr.next
             curr.next = prev
             prev = curr
             curr = nxt
-        
-        curr_node.next = curr 
+            length -= 1
 
-        if before:
-            before.next = prev
+        dummy.next = curr
+
+        if begin:
+            begin.next = prev
             return head
         
-        else:
-            return prev 
-        
-
+        return prev
