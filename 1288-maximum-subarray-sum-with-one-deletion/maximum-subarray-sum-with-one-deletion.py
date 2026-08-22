@@ -1,19 +1,20 @@
 class Solution:
     def maximumSum(self, arr: List[int]) -> int:
-        no_delete = arr[0]
-        one_delete = float("-inf")
+        n = len(arr)
+        delete = float('-inf')
+        noDelete = arr[0]
         ans = arr[0]
 
-        for i in range(1,len(arr)):
-            prev_nodelete = no_delete
+        for i in range(1, n):
 
-            no_delete = max(no_delete+arr[i],arr[i])
+            v1 = arr[i]
+            v2 = noDelete + arr[i]
+            v3 = delete + arr[i]
+            v4 = noDelete
 
-            one_delete = max(one_delete+arr[i],prev_nodelete)
+            noDelete = max(v1, v2)
+            delete = max(v3, v4)
 
-            ans = max(ans,one_delete,no_delete)
+            ans = max(ans,delete, noDelete)
         
         return ans
-
-
-            
