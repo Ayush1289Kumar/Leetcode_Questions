@@ -1,16 +1,17 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        min_value = nums[0]
-
-        start , end  = 0,len(nums)-1
+        n = len(nums)
+        start = 0
+        end = n -1
+        ans = 0
 
         while (start <= end):
-            mid = (start+end)//2
+            guess = (start+end)//2
 
-            if nums[mid] < min_value:
-                min_value = nums[mid]
-                end = mid -1
+            if nums[guess] > nums[n-1]:
+                start = start+1
             else:
-                start = mid +1
+                ans = guess
+                end = guess -1
         
-        return min_value
+        return nums[ans]
