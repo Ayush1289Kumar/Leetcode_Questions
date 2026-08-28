@@ -15,9 +15,7 @@ class Solution:
         
         return min_idx
     
-    def binarySearch(self,s,e,nums,target):
-        start, end = s, e
-
+    def binarySearch(self,start,end,nums,target):
         while (start <= end):
             mid = (start+end)//2
 
@@ -34,14 +32,16 @@ class Solution:
 
     def search(self, nums: List[int], target: int) -> int:
         # First we will find the minimum index and then we will break the array in two parts, and we will apply binary search in that parts.
-        s1, e1 = 0, self.minV_idx(nums)
-        s2, e2 = self.minV_idx(nums), len(nums)-1
-
+        """
+        binarySearch(0,min_idx)
+        binarySearch(min_idx,n-1)
+        
+        """
         ans = -1
-        ans = self.binarySearch(s1,e1,nums,target)
+        ans = self.binarySearch(0,self.minV_idx(nums),nums,target)
 
         if ans==-1:
-            ans = self.binarySearch(s2,e2,nums,target)
+            ans = self.binarySearch(self.minV_idx(nums),len(nums)-1,nums,target)
 
         return ans
         
