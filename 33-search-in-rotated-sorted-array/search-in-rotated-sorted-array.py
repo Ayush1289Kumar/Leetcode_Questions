@@ -1,18 +1,18 @@
 class Solution:
 
     def minV_idx(self,nums):
-        n = len(nums)
-        min_idx = -1
-        start,end = 0,n-1
+        min_idx = 0
+        start , end = 0, len(nums) -1
 
-        while(start <=end):
+        while(start<=end):
             mid = (start+end)//2
 
-            if (nums[mid] > nums[n-1]):
-                start = mid+1
-            else:
+            if (nums[mid] < nums[min_idx]):
                 min_idx = mid
-                end = mid -1
+                end = mid-1
+            else:
+                start = mid+1
+        
         return min_idx
     
     def binarySearch(self,s,e,nums,target):
