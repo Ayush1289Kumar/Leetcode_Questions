@@ -1,30 +1,28 @@
 class Solution:
-
-    def possibleHours(self,nums,size,speed):
-        hour = 0
+    def hours(self,nums,size,speed):
+        hr = 0
 
         for i in range(size):
-            hour += nums[i]//speed
+            hr += nums[i]//speed
 
-            if nums[i]%speed !=0:
-                hour+=1
+            if nums[i]%speed != 0:
+                hr+=1
         
-        return hour
-    
+        return hr
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        size = len(piles)
-        start , end = 1, max(piles)
         ans = 0
+        size = len(piles)
+        start = 1
+        end = max(piles)
 
-        while (start <= end):
-            guess_speed = (start+end)//2
+        while(start <= end):
+            speed = (start+end)//2
+            hour = self.hours(piles,size,speed)
 
-            hourNeeded = self.possibleHours(piles,size,guess_speed)
-
-            if hourNeeded > h:
-                start = guess_speed+1
+            if (hour>h):
+                start = speed+1
             else:
-                ans = guess_speed
-                end = guess_speed-1
+                ans = speed
+                end = speed -1
         
         return ans
