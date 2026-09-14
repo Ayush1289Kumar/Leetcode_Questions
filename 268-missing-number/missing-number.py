@@ -1,21 +1,14 @@
-class Solution:
-    def swap(self,nums,n1,n2):
-        temp = nums[n1]
-        nums[n1] = nums[n2]
-        nums[n2] = temp
-
-    def cyclicSort(self,nums,n):
-        i = 0
-        while (i<n):
-            if (nums[i] < n and nums[i] != i ):
-                self.swap(nums,i,nums[i])
-            else:
-                i+=1
-         
+class Solution:   
     def missingNumber(self, nums: List[int]) -> int:
         n = len(nums)
-        self.cyclicSort(nums,n)
-
+        i = 0
+        while (i<n):
+            correct = nums[i]
+            if (nums[i] < n and nums[i] != nums[correct]):
+                nums[correct],nums[i] = nums[i],nums[correct]
+            else:
+                i+=1
+        
         for i in range(n):
             if nums[i] != i:
                 return i
