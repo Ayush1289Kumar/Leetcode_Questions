@@ -1,27 +1,28 @@
+import heapq as h
+
+class Pairs:
+    def __init__(self,first,second):
+        self.first = first
+        self.second = second
+    
+    def __lt__(self,other):
+        if self.first != other.first:
+            return self.first > other.first
+        return self.second > other.second
+
 class Solution:
-    def max(self, map):
-        max_val = 0
-        max_key = None
-
-        for key, value in map.items():
-            if value > max_val:
-                max_val = value
-                max_key = key
-
-        return max_key
-
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        heap = []
         map = {}
         ans = []
 
-        # Create frequency map
         for i in nums:
-            map[i] = map.get(i, 0) + 1
-
-        # Find maximum k times
+            map[i] = map.get(i,0)+1    # element -> frequency
+        
+        for key,value in map.items():
+            h.heappush(heap,Pairs(value,key))
+        
         for i in range(k):
-            key = self.max(map)
-            ans.append(key)
-            del map[key]
+            ans.append(h.heappop(heap).second)
 
         return ans
