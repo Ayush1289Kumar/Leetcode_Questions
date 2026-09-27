@@ -27,9 +27,8 @@ class Solution:
                 h.heappush(heap,Pairs(dist,i))
             
             else:
-                if heap[0].dist > dist:
-                    h.heappop(heap)
-                    h.heappush(heap,Pairs(dist,i))
+                h.heappush(heap,Pairs(dist,i))
+                h.heappop(heap)
         
         for i in heap:
             idx = i.idx
