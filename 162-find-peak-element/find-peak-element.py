@@ -1,14 +1,14 @@
 class Solution:
     def findPeakElement(self, arr: List[int]) -> int:
-        low,high = 0, len(arr)-1
+        left,right = 0, len(arr)-1
 
-        while (low < high):
-            mid = low + (high-low)//2
+        while (left < right):
+            mid = left + (right-left)//2
 
             if (arr[mid] > arr[mid+1]):
-                high = mid
+                right = mid
             
             else:
-                low = mid + 1
+                left = mid + 1
         
-        return low
+        return left
